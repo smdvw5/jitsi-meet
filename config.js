@@ -80,5 +80,9 @@ var config = { // eslint-disable-line no-unused-vars
     // Suspending video might cause problems with audio playback. Disabling until these are fixed.
     disableSuspendVideo: true,
     // disables or enables RTX (RFC 4588).
-    disableRtx: true
+    disableRtx: true,
+    // Enables peer to peer
+    enableP2P: false,
+    // Disables automatic switching between P2P and JVB (for tests only)
+    //disableAutoP2P: true
 };
