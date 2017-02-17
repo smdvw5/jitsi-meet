@@ -1256,7 +1256,8 @@ export default {
 
         room.on(ConferenceEvents.TALK_WHILE_MUTED, () => {
             APP.UI.showToolbar(6000);
-            UIUtil.animateShowElement($("#talkWhileMutedPopup"), true, 5000);
+
+            APP.UI.showCustomToolbarPopup('#talkWhileMutedPopup', true, 5000);
         });
 
 /*

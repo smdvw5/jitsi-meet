@@ -53,7 +53,6 @@ var config = { // eslint-disable-line no-unused-vars
     disableStats: false,
     disableAudioLevels: false,
     channelLastN: -1, // The default value of the channel attribute last-n.
-    adaptiveLastN: false,
     //disableAdaptiveSimulcast: false,
     enableRecording: false,
     enableWelcomePage: true,
@@ -81,6 +80,8 @@ var config = { // eslint-disable-line no-unused-vars
     disableSuspendVideo: true,
     // disables or enables RTX (RFC 4588).
     disableRtx: true,
+    // Sets the preferred resolution (height) for local video. Defaults to 360.
+    resolution: 720,
     // Enables peer to peer
     enableP2P: false,
     // Disables automatic switching between P2P and JVB (for tests only)
