@@ -475,21 +475,22 @@ function disconnect() {
 
 /**
  * Handles CONNECTION_FAILED events from lib-jitsi-meet.
- * @param {JitsiMeetJS.connection.error} error the error reported.
+ *
+ * @param {JitsiMeetJS.connection.error} error - The reported error.
  * @returns {void}
  * @private
  */
-function _connectionFailedHandler (error) {
+function _connectionFailedHandler(error) {
     switch (error) {
     case ConnectionErrors.CONNECTION_DROPPED_ERROR:
     case ConnectionErrors.OTHER_ERROR:
-    case ConnectionErrors.SERVER_ERROR: {
-        APP.connection.removeEventListener( ConnectionEvents.CONNECTION_FAILED,
+    case ConnectionErrors.SERVER_ERROR:
+        APP.connection.removeEventListener(
+            ConnectionEvents.CONNECTION_FAILED,
             _connectionFailedHandler);
         if (room)
             room.leave();
         break;
-    }
     }
 }
 

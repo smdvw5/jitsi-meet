@@ -7,8 +7,8 @@ import {
 } from '../base/connection';
 import {
     ReducerRegistry,
-    setStateProperty,
-    setStateProperties
+    setStateProperties,
+    setStateProperty
 } from '../base/redux';
 
 import {
@@ -43,20 +43,19 @@ ReducerRegistry.register('features/overlay', (state = {}, action) => {
 });
 
 /**
- * Reduces a specific Redux action CONFERENCE_FAILED of the feature
- * overlay.
+ * Reduces a specific Redux action CONFERENCE_FAILED of the feature overlay.
  *
  * @param {Object} state - The Redux state of the feature overlay.
  * @param {Action} action - The Redux action CONFERENCE_FAILED to reduce.
- * @returns {Object} The new state of the feature base/connection after the
- * reduction of the specified action.
+ * @returns {Object} The new state of the feature overlay after the reduction of
+ * the specified action.
  * @private
  */
 function _conferenceFailed(state, action) {
     const ConferenceErrors = JitsiMeetJS.errors.conference;
 
     if (action.error === ConferenceErrors.FOCUS_LEFT
-        || action.error === ConferenceErrors.VIDEOBRIDGE_NOT_AVAILABLE) {
+            || action.error === ConferenceErrors.VIDEOBRIDGE_NOT_AVAILABLE) {
         return setStateProperties(state, {
             haveToReload: true,
             isNetworkFailure: false,
@@ -72,8 +71,8 @@ function _conferenceFailed(state, action) {
  * overlay.
  *
  * @param {Object} state - The Redux state of the feature overlay.
- * @returns {Object} The new state of the feature overlay after the
- * reduction of the specified action.
+ * @returns {Object} The new state of the feature overlay after the reduction of
+ * the specified action.
  * @private
  */
 function _connectionEstablished(state) {
@@ -81,13 +80,12 @@ function _connectionEstablished(state) {
 }
 
 /**
- * Reduces a specific Redux action CONNECTION_FAILED of the feature
- * overlay.
+ * Reduces a specific Redux action CONNECTION_FAILED of the feature overlay.
  *
  * @param {Object} state - The Redux state of the feature overlay.
  * @param {Action} action - The Redux action CONNECTION_FAILED to reduce.
- * @returns {Object} The new state of the feature overlay after the
- * reduction of the specified action.
+ * @returns {Object} The new state of the feature overlay after the reduction of
+ * the specified action.
  * @private
  */
 function _connectionFailed(state, action) {
@@ -96,7 +94,7 @@ function _connectionFailed(state, action) {
     switch (action.error) {
     case ConnectionErrors.CONNECTION_DROPPED_ERROR:
     case ConnectionErrors.OTHER_ERROR:
-    case ConnectionErrors.SERVER_ERROR: {
+    case ConnectionErrors.SERVER_ERROR:
         logger.error(`XMPP connection error: ${action.errorMessage}`);
 
         // From all of the cases above only CONNECTION_DROPPED_ERROR
@@ -108,36 +106,33 @@ function _connectionFailed(state, action) {
             reason: `xmpp-conn-dropped: ${action.errorMessage}`
         });
     }
-    }
 
     return state;
 }
 
-
 /**
- * Reduces a specific Redux action MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED
- * of the feature overlay.
+ * Reduces a specific Redux action MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED of
+ * the feature overlay.
  *
  * @param {Object} state - The Redux state of the feature overlay.
  * @param {Action} action - The Redux action to reduce.
- * @returns {Object} The new state of the feature overlay after the
- * reduction of the specified action.
+ * @returns {Object} The new state of the feature overlay after the reduction of
+ * the specified action.
  * @private
  */
 function _mediaPermissionPromptVisibilityChanged(state, action) {
     return setStateProperties(state, {
-        mediaPermissionPromptVisible: action.isVisible,
-        browser: action.browser
+        browser: action.browser,
+        mediaPermissionPromptVisible: action.isVisible
     });
 }
 
 /**
- * Reduces a specific Redux action SUSPEND_DETECTED of the feature
- * overlay.
+ * Reduces a specific Redux action SUSPEND_DETECTED of the feature overlay.
  *
  * @param {Object} state - The Redux state of the feature overlay.
- * @returns {Object} The new state of the feature overlay after the
- * reduction of the specified action.
+ * @returns {Object} The new state of the feature overlay after the reduction of
+ * the specified action.
  * @private
  */
 function _suspendDetected(state) {

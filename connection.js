@@ -75,18 +75,17 @@ function connect(id, password, roomName) {
         connection.addEventListener(
             ConnectionEvents.CONNECTION_FAILED, connectionFailedHandler);
 
-        function connectionFailedHandler (error, errMsg) {
+        function connectionFailedHandler(error, errMsg) {
             APP.store.dispatch(connectionFailed(connection, error, errMsg));
 
             switch (error) {
             case ConnectionErrors.CONNECTION_DROPPED_ERROR:
             case ConnectionErrors.OTHER_ERROR:
-            case ConnectionErrors.SERVER_ERROR: {
+            case ConnectionErrors.SERVER_ERROR:
                 connection.removeEventListener(
                     ConnectionEvents.CONNECTION_FAILED,
                     connectionFailedHandler);
                 break;
-            }
             }
         }
 
